@@ -1,0 +1,18 @@
+cmake_minimum_required(VERSION 3.13)
+include(pico_sdk_import.cmake)
+
+# change project_name
+project(project_name)
+
+pico_sdk_init()
+
+# change project_name and file_name - don't change format of these lines (I think it would break it)
+add_executable(project_name
+        file_name.c
+)
+
+# change project_name
+target_link_libraries(project_name pico_stdlib)
+
+# change project_name
+pico_add_extra_outputs(project_name)

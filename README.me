@@ -1,28 +1,35 @@
-CMakeList.txt:
-    cmake_minimum_required(VERSION 3.13)
-    include(pico_sdk_import.cmake)
+You need to do everything in a virtual ubuntu desktop. You need to use WSL:
 
-    project(project_name)
+To install WSL and Ubuntu:
+    In cmd run the command: 
+        wsl --install
+    In virtual desktop terminal (should automatically enter it):
+        Enter new username and password (remember them)
+        run the commands:
+            sudo apt-get upgrade
+            sudo apt install git cmake gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential libstdc++-arm-none-eabi-newlib
+            cd ~/
+            mkdir pico
+            cd pico
+            git clone -b master https://github.com/raspberrypi/pico-sdk.git --recursive
+            sudo nano .bashrc
+        At the end of the file add the line export PICO_SDK_PATH = home/username/pico/pico-sdk
+        Press 'ctrl o' then 'enter' to save and then 'ctrl x' to return to the terminal.
 
-    pico_sdk_init()
 
-    add_executable(project_name
-            file_name.c
-    )
+When you want to open the virtual desktop terminal, there is now an installed app called 'Ubuntu' - click on it - it annoyingly opens up on startup everytime you boot your pc unless you uninstall the app.
+As far as I know, to uninstall this whole virtual desktop, just click on uninstall on the ubuntu app in the start menu and restart PC. 
+The linux drive in File Explorer contains the files of Ubuntu. Everything for pico is in home/username/pico.
 
-    # pull in common dependencies
-    target_link_libraries(project_name pico_stdlib)
 
-    # create map/bin/hex file etc.
-    pico_add_extra_outputs(project_name)
-
-To build:
-    *Once installed and set-up Ubuntu through WSL*
-    
-    Must have 'export PICO_SDK_PATH = path/to/pico-sdk' in 'sudo nano .bashrc' and 'source ~/.bashrc' 
-    (Only needs to be done once per Ubuntu device)
-    
-    Must have CMakeList.txt in project directory (template included above). 
-    Must have pico_sdk_import.cmake (included in repo) in project directory.
-    Must have empty directory build in the project directory and 'cd build' into it.
-    run 'cmake ..' then 'make -j8' (8 being CPU cores).
+To compile:
+    Create project directory in the /home/username/pico directory (or wherever you want but it has to be in the linux/ubuntu drive) and add the C file that you created in VS (just copy it over from your windows drive to the linux drive). 
+    You can do all this using File Explorer.  
+    Add all the base files (within the folder of this repo) to project directory and amend CMakeList.txt, following the comments (project name can be anything just keep it consistent throughout the file).
+    In the ubuntu terminal, cd into project directory then run the commands:
+        mkdir build
+        cd build
+        cmake ..
+        make -j8
+    (8 in -j8 being number of CPU cores your PC has - its for quicker compiling).
+    UF2 is found in the build folder - it is the only UF2 file in there. 
