@@ -1,0 +1,25 @@
+CMakeList.txt:
+    cmake_minimum_required(VERSION 3.13)
+    include(pico_sdk_import.cmake)
+
+    project(project_name)
+
+    pico_sdk_init()
+
+    add_executable(project_name
+            file_name.c
+    )
+
+    # pull in common dependencies
+    target_link_libraries(project_name pico_stdlib)
+
+    # create map/bin/hex file etc.
+    pico_add_extra_outputs(project_name)
+
+To build:
+    Must have CMakeList.txt in directory. 
+    Must have pico_sdk_import.cmake.
+    Must have 'export PICO_SDK_PATH = path/to/pico-sdk' in sudo nano .bashrc and 'source ~/.bashrc'.  
+    Must have empty directory build and cd into it.
+    'cmake ..'
+    'make -j8' (8 being CPU cores)
