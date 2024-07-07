@@ -18,9 +18,11 @@ CMakeList.txt:
 
 To build:
     *Once installed and set-up Ubuntu through WSL*
-    Must have CMakeList.txt in directory. 
-    Must have pico_sdk_import.cmake.
-    Must have 'export PICO_SDK_PATH = path/to/pico-sdk' in sudo nano .bashrc and 'source ~/.bashrc'.  
-    Must have empty directory build and cd into it.
-    'cmake ..'
-    'make -j8' (8 being CPU cores)
+    
+    Must have 'export PICO_SDK_PATH = path/to/pico-sdk' in 'sudo nano .bashrc' and 'source ~/.bashrc' 
+    (Only needs to be done once per Ubuntu device)
+    
+    Must have CMakeList.txt in project directory (template included above). 
+    Must have pico_sdk_import.cmake (included in repo) in project directory.
+    Must have empty directory build in the project directory and 'cd build' into it.
+    run 'cmake ..' then 'make -j8' (8 being CPU cores).
