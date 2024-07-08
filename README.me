@@ -26,7 +26,7 @@ The linux drive in File Explorer contains the files of Ubuntu. Everything for pi
 
 
 To compile:
-    In file explorer, go to the pico-sdk folder then /tools/pioasm and open pio_disassembler.h with VSCode (convenience) and add the line '#include <inttypes.h>' after the '#include <cstdint>' line. 
+    In file explorer, go to the pico-sdk folder then /tools/pioasm and open pio_disassembler.h with VSCode (convenience) and add the line '#include <inttypes.h>' after the '#include <cstdint>' line and save the file. 
     Create project directory in the /home/username/pico directory (or wherever you want but it has to be in the linux/ubuntu drive) and add the C file that you created in VS (just copy it over from your windows drive to the linux drive). 
     You can do all this using File Explorer.  
     Add all the base files (within the folder of this repo) to project directory and amend CMakeList.txt, following the comments (project name can be anything just keep it consistent throughout the file).
